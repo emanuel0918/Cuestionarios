@@ -1,6 +1,7 @@
 package com.modelo.dao;
 
 import com.modelo.conexion.Conexion;
+import com.modelo.entidades.Cuestionario;
 import com.modelo.entidades.Evaluacion;
 import com.modelo.entidades.Usuario;
 import java.sql.PreparedStatement;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EvaluacionDAO extends Conexion {
-    private static final String EvaluacionAlumno = "Insert into Evaluacion calificacionEvaluacion,nombreCuestionario,"
-                                                   + "idUsuario values (?,?,?)";
+    private static final String EvaluacionAlumno = "Insert into Evaluacion (calificacionEvaluacion,idCuestionario,"
+                                                    + "idUsuario) values (?,?,?)";
     
     private static final String SeleccionaEvaluaciones = "Select * from Evaluacion e,Usuario u where "
                                                         + "e.idUsuario=u.idUsuario and e.idUsuario=?";
@@ -20,7 +21,7 @@ public class EvaluacionDAO extends Conexion {
         Conectar();
         PreparedStatement pst = getConexion().prepareStatement(EvaluacionAlumno);
         pst.setInt(1, evaluacion.getCalificacionEvaluacion());
-        pst.setString(2, evaluacion.getNombreEvaluacion());
+        pst.setInt(2, evaluacion.getIdCuestionario().getIdCuestionario());
         pst.setString(3, evaluacion.getIdUsuario().getIdUsuario());
         pst.executeUpdate();
         Desconectar();
@@ -36,7 +37,9 @@ public class EvaluacionDAO extends Conexion {
             Evaluacion evaluacion = new Evaluacion();
             evaluacion.setIdEvaluacion(rs.getInt("idEvaluacion"));
             evaluacion.setCalificacionEvaluacion(rs.getInt("calificacionEvaluacion"));
-            evaluacion.setNombreEvaluacion(rs.getString("nombreCuestionario"));
+            CuestionarioDAO cdao = new CuestionarioDAO();
+            Cuestionario cuestionario = cdao.SeleccionaCuestionario(rs.getInt("idCuestionario"));
+            evaluacion.setIdCuestionario(cuestionario);
             UsuarioDAO udao = new UsuarioDAO();
             Usuario usuario = udao.LeeUsuario(rs.getString("idUsuario"));
             evaluacion.setIdUsuario(usuario);

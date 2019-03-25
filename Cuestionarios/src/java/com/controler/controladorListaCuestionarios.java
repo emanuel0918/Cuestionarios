@@ -2,6 +2,7 @@ package com.controler;
 
 import com.modelo.dao.CuestionarioDAO;
 import com.modelo.entidades.Cuestionario;
+import com.modelo.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -12,21 +13,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class controladorListaCuestionarios extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+                int id = Integer.parseInt(request.getParameter("id"));
+                CuestionarioDAO cdao = new CuestionarioDAO();
+                List<Cuestionario> listaCuestionarios = cdao.SeleccionaCuestionarios(id);
+
+                request.setAttribute("ListaCuestionarios", listaCuestionarios);
+                request.getRequestDispatcher("listaCuestionarios.jsp").forward(request, response);
             
-            int id = Integer.parseInt(request.getParameter("id"));
-            CuestionarioDAO cdao = new CuestionarioDAO();
-            List<Cuestionario> listaCuestionarios = cdao.SeleccionaCuestionarios(id);
-            
-            request.setAttribute("ListaCuestionarios", listaCuestionarios);
-            request.getRequestDispatcher("listaCuestionarios.jsp").forward(request, response);
         }
     }
 

@@ -30,7 +30,7 @@ public class controladorLogin extends HttpServlet {
                     
                     HttpSession sesion = request.getSession();
                     sesion.setAttribute("User", usuario);
-                    request.setAttribute("Usuario", usuario);
+                    //request.setAttribute("Usuario", usuario);
 
                     if (usuario.getCategoriaUsuario().toUpperCase().equals("ALUMNO")) {
                         request.getRequestDispatcher("homeAlumno.jsp").forward(request, response);
@@ -40,9 +40,11 @@ public class controladorLogin extends HttpServlet {
 
                 } else {
                     out.println("<h1> Constraseña incorrecta</h1>");
+                    request.getRequestDispatcher("index.html").include(request, response);
                 }
             } else {
                 out.println("<h1> usuario incorrecta</h1>");
+                request.getRequestDispatcher("index.html").include(request, response);
             }
 
         }

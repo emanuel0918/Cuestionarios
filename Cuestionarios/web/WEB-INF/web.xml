@@ -20,6 +20,10 @@
         <servlet-name>controladorEvaluacion</servlet-name>
         <servlet-class>com.controler.controladorEvaluacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controladorCerrarSesion</servlet-name>
+        <servlet-class>com.controler.controladorCerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controladorLogin</servlet-name>
         <url-pattern>/controladorLogin</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>controladorEvaluacion</servlet-name>
         <url-pattern>/controladorEvaluacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controladorCerrarSesion</servlet-name>
+        <url-pattern>/controladorCerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,8 +4,8 @@ public class Evaluacion {
 
     private int idEvaluacion;
     private Usuario idUsuario;
+    private Cuestionario idCuestionario;
     private int calificacionEvaluacion;
-    private String nombreEvaluacion;
 
     public Evaluacion() {
     }
@@ -26,20 +26,20 @@ public class Evaluacion {
         this.idUsuario = idUsuario;
     }
 
+    public Cuestionario getIdCuestionario() {
+        return idCuestionario;
+    }
+
+    public void setIdCuestionario(Cuestionario idCuestionario) {
+        this.idCuestionario = idCuestionario;
+    }
+
     public int getCalificacionEvaluacion() {
         return calificacionEvaluacion;
     }
 
     public void setCalificacionEvaluacion(int calificacionEvaluacion) {
         this.calificacionEvaluacion = calificacionEvaluacion;
-    }
-
-    public String getNombreEvaluacion() {
-        return nombreEvaluacion;
-    }
-
-    public void setNombreEvaluacion(String nombreEvaluacion) {
-        this.nombreEvaluacion = nombreEvaluacion;
     }
 
 }

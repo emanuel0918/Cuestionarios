@@ -2,6 +2,7 @@ package com.controler;
 
 import com.modelo.dao.MateriaDAO;
 import com.modelo.entidades.Materia;
+import com.modelo.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class controladorMaterias extends HttpServlet {
 
@@ -19,11 +21,13 @@ public class controladorMaterias extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            MateriaDAO mdao = new MateriaDAO();        
+
+            MateriaDAO mdao = new MateriaDAO();
             List<Materia> listaMaterias = mdao.LeeTodas();
-            
+
             request.setAttribute("ListaMaterias", listaMaterias);
             request.getRequestDispatcher("categoriaMaterias.jsp").forward(request, response);
+
         }
     }
 

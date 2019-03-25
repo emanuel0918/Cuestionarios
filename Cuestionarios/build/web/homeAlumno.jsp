@@ -22,12 +22,17 @@
                     <a class="nav-item nav-link active" href="homeAlumno.jsp">Home<span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="controladorMaterias">Cuestionarios</a>
                     <a class="nav-item nav-link" href="#">Pricing</a>
-                    <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-item nav-link" href="controladorCerrarSesion">Cerrar Sesion</a>
                 </div>
             </div>
         </nav>
             <div class="container">
                 <h2><p style="text-align: center">Datos personales</p></h2>
+                <p style="text-align: center">Nombre:<c:out value="${User.idPersona.nombre}"/> <c:out value="${User.idPersona.apellidoPaterno}"/> <c:out value="${User.idPersona.apellidoMaterno}"/></p>
+                <p style="text-align: center">Email:<c:out value="${User.idPersona.email}"/></p>
+                <p style="text-align: center">Telefono:<c:out value="${User.idPersona.telefono}"/></p>
+                <p style="text-align: center">Usuario:<c:out value="${User.idUsuario}"/></p>
+                <p style="text-align: center"><a href="#" class="btn btn-success">Modificar</a></p> 
             </div>    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

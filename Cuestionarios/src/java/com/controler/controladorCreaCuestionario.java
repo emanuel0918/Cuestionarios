@@ -4,6 +4,7 @@ import com.modelo.dao.OpcionesDAO;
 import com.modelo.dao.PreguntasDAO;
 import com.modelo.entidades.Opciones;
 import com.modelo.entidades.Preguntas;
+import com.modelo.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -15,32 +16,31 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 public class controladorCreaCuestionario extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            int idCuestionario = Integer.parseInt(request.getParameter("id"));
-            
-            
-            PreguntasDAO pdao = new PreguntasDAO();
-            List<Preguntas> listaPreguntas = pdao.SeleccionaPreguntas(idCuestionario);
-            
-            OpcionesDAO odao = new OpcionesDAO();
-            List<Opciones> listaOpciones = new ArrayList();
-            for(Preguntas pregunta: listaPreguntas){
-                Opciones opcion = odao.SelecionaOpcion(pregunta.getIdPreguntas());
-                opcion.setIdPreguntas(pregunta);
-                listaOpciones.add(opcion);
-            }
-            
-            request.setAttribute("listaOpciones", listaOpciones);
-            request.getRequestDispatcher("Cuestionario.jsp").forward(request, response);
+
+                int idCuestionario = Integer.parseInt(request.getParameter("id"));
+
+                PreguntasDAO pdao = new PreguntasDAO();
+                List<Preguntas> listaPreguntas = pdao.SeleccionaPreguntas(idCuestionario);
+
+                OpcionesDAO odao = new OpcionesDAO();
+                List<Opciones> listaOpciones = new ArrayList();
+                for (Preguntas pregunta : listaPreguntas) {
+                    Opciones opcion = odao.SelecionaOpcion(pregunta.getIdPreguntas());
+                    opcion.setIdPreguntas(pregunta);
+                    listaOpciones.add(opcion);
+                }
+
+                request.setAttribute("listaOpciones", listaOpciones);
+                request.getRequestDispatcher("Cuestionario.jsp").forward(request, response);
+                
         }
     }
 
