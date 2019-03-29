@@ -24,6 +24,10 @@
         <servlet-name>controladorCerrarSesion</servlet-name>
         <servlet-class>com.controler.controladorCerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controladorRegistraEvaluacion</servlet-name>
+        <servlet-class>com.controler.controladorRegistraEvaluacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controladorLogin</servlet-name>
         <url-pattern>/controladorLogin</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>controladorCerrarSesion</servlet-name>
         <url-pattern>/controladorCerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controladorRegistraEvaluacion</servlet-name>
+        <url-pattern>/controladorRegistraEvaluacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

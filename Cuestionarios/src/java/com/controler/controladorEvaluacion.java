@@ -1,16 +1,11 @@
 package com.controler;
 
-import com.modelo.dao.CuestionarioDAO;
 import com.modelo.dao.EvaluacionDAO;
-import com.modelo.dao.PreguntasDAO;
-import com.modelo.entidades.Cuestionario;
 import com.modelo.entidades.Evaluacion;
-import com.modelo.entidades.Preguntas;
 import com.modelo.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,38 +21,10 @@ public class controladorEvaluacion extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            int idCuestionario = Integer.parseInt(request.getParameter("Cuestionarioid"));
-
-            List<String> Respuestas = new ArrayList();
-            for (int i = 1; i <= 2; i++) {
-                String Respuesta = request.getParameter("Respuesta" + i);
-                Respuestas.add(Respuesta);
-            }
-
-            PreguntasDAO pdao = new PreguntasDAO();
-            List<Preguntas> listaPreguntas = pdao.SeleccionaPreguntas(idCuestionario);
-            int aciertos = 0;
-            int count = 0;
-            for (Preguntas pregunta : listaPreguntas) {
-                if (pregunta.getRespuesta().equals(Respuestas.get(count))) {
-                    aciertos = aciertos + 1;
-                }
-                count = count + 1;
-            }
-
-            Evaluacion evaluacion = new Evaluacion();
-            evaluacion.setCalificacionEvaluacion(aciertos);
-            CuestionarioDAO cdao = new CuestionarioDAO();
-            Cuestionario cuestionario = cdao.SeleccionaCuestionario(idCuestionario);
-            evaluacion.setIdCuestionario(cuestionario);
-            HttpSession sesion = request.getSession();
+            
+            HttpSession sesion = request.getSession(false);
             Usuario usuario = (Usuario) sesion.getAttribute("User");
-            evaluacion.setIdUsuario(usuario);
-
             EvaluacionDAO edao = new EvaluacionDAO();
-            edao.RegistraEvaluacion(evaluacion);
-
             List<Evaluacion> listaEvaluaciones = edao.LeeEvaluaciones(usuario.getIdUsuario());
             
             request.setAttribute("listaEvaluaciones", listaEvaluaciones);

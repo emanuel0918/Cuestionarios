@@ -20,8 +20,8 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="homeAlumno.jsp">Home<span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="controladorMaterias">Cuestionarios</a>
-                    <a class="nav-item nav-link" href="#">Pricing</a>
-                    <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-item nav-link" href="controladorEvaluacion">Evaluaciones</a>
+                    <a class="nav-item nav-link" href="controladorCerrarSesion">Cerrar Sesion</a>
                 </div>
             </div>
         </nav>

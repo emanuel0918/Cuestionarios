@@ -6,6 +6,7 @@ public class Evaluacion {
     private Usuario idUsuario;
     private Cuestionario idCuestionario;
     private int calificacionEvaluacion;
+    private String fechaEvaluacion;
 
     public Evaluacion() {
     }
@@ -41,5 +42,15 @@ public class Evaluacion {
     public void setCalificacionEvaluacion(int calificacionEvaluacion) {
         this.calificacionEvaluacion = calificacionEvaluacion;
     }
+
+    public String getFechaEvaluacion() {
+        return fechaEvaluacion;
+    }
+
+    public void setFechaEvaluacion(String fechaEvaluacion) {
+        this.fechaEvaluacion = fechaEvaluacion;
+    }
+    
+    
 
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreguntasDAO extends Conexion {
-    private static final String PreguntasDeCuestionario = "Select p.idPregunta,p.nombrePregnta,p.nombreRespuesta,p.idCuestionario from Cuestionarios c, Pregunta p "
+    private static final String PreguntasDeCuestionario = "Select p.idPregunta,p.nombrePregunta,p.nombreRespuesta,p.idCuestionario from Cuestionarios c, Pregunta p "
                                                           + "where p.idCuestionario=c.idCuestionario and c.idCuestionario=?";
     
     public List<Preguntas> SeleccionaPreguntas(int idCuestionario) throws SQLException, ClassNotFoundException{
@@ -22,7 +22,7 @@ public class PreguntasDAO extends Conexion {
         while(rs.next()){
             Preguntas pregunta = new Preguntas();
             pregunta.setIdPreguntas(rs.getInt("idPregunta"));
-            pregunta.setPregunta(rs.getString("nombrePregnta"));
+            pregunta.setPregunta(rs.getString("nombrePregunta"));
             pregunta.setRespuesta(rs.getString("nombreRespuesta"));
             CuestionarioDAO cdao = new CuestionarioDAO();
             Cuestionario cuestionario = cdao.SeleccionaCuestionario(rs.getInt("idCuestionario"));

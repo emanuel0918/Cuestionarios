@@ -5,6 +5,8 @@ import com.modelo.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -32,7 +34,7 @@ public class controladorLogin extends HttpServlet {
                     sesion.setAttribute("User", usuario);
                     //request.setAttribute("Usuario", usuario);
 
-                    if (usuario.getCategoriaUsuario().toUpperCase().equals("ALUMNO")) {
+                    if (usuario.getCategoriaUsuario().toUpperCase().equals("ALUMNO")) {                     
                         request.getRequestDispatcher("homeAlumno.jsp").forward(request, response);
                     } else {
                         request.getRequestDispatcher("homeProfesor.jsp").forward(request, response);

@@ -20,26 +20,30 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="homeAlumno.jsp">Home<span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="controladorMaterias">Cuestionarios</a>
-                    <a class="nav-item nav-link" href="#">Pricing</a>
-                    <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-item nav-link" href="controladorEvaluacion">Evaluaciones</a>
+                    <a class="nav-item nav-link" href="controladorCerrarSesion">Cerrar Sesion</a>
                 </div>
             </div>
         </nav>
         <div class="container center-block">
             <div class="row">
-                <h1>Lista de Evaluaciones</h1>
+                <h1>Historial de Evaluaciones</h1>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Cuestionario</th>
-                            <th>Calificaion</th>
+                            <th>Materia</th>
+                            <th>Nombre del Examen</th>
+                            <th>Calificaión</th>
+                            <th>Fecha de registro</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${listaEvaluaciones}" var="Evaluacion">
                             <tr>
+                                <td><c:out value="${Evaluacion.idCuestionario.idMateria.nombreMateria}" /></td>
                                 <td><c:out value="${Evaluacion.idCuestionario.nombreCuestionario}" /></td>
-                                    <td><c:out value="${Evaluacion.calificacionEvaluacion}" /></td>                               
+                                <td><c:out value="${Evaluacion.calificacionEvaluacion}" /></td>
+                                <td><c:out value="${Evaluacion.fechaEvaluacion}" /></td>
                             </tr>                           
                         </c:forEach>
                     </tbody>

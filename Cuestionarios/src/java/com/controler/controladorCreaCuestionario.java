@@ -39,6 +39,8 @@ public class controladorCreaCuestionario extends HttpServlet {
                 }
 
                 request.setAttribute("listaOpciones", listaOpciones);
+                request.setAttribute("NombreCuestionario", listaOpciones.get(0).getIdPreguntas().getIdCuestionario().getNombreCuestionario());
+                request.setAttribute("idCuestionario", listaOpciones.get(0).getIdPreguntas().getIdCuestionario().getIdCuestionario());
                 request.getRequestDispatcher("Cuestionario.jsp").forward(request, response);
                 
         }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EvaluacionDAO extends Conexion {
     private static final String EvaluacionAlumno = "Insert into Evaluacion (calificacionEvaluacion,idCuestionario,"
-                                                    + "idUsuario) values (?,?,?)";
+                                                    + "idUsuario,fechaEvaluacion) values (?,?,?,?)";
     
     private static final String SeleccionaEvaluaciones = "Select * from Evaluacion e,Usuario u where "
                                                         + "e.idUsuario=u.idUsuario and e.idUsuario=?";
@@ -23,6 +23,7 @@ public class EvaluacionDAO extends Conexion {
         pst.setInt(1, evaluacion.getCalificacionEvaluacion());
         pst.setInt(2, evaluacion.getIdCuestionario().getIdCuestionario());
         pst.setString(3, evaluacion.getIdUsuario().getIdUsuario());
+        pst.setString(4, evaluacion.getFechaEvaluacion());
         pst.executeUpdate();
         Desconectar();
     }
@@ -43,6 +44,7 @@ public class EvaluacionDAO extends Conexion {
             UsuarioDAO udao = new UsuarioDAO();
             Usuario usuario = udao.LeeUsuario(rs.getString("idUsuario"));
             evaluacion.setIdUsuario(usuario);
+            evaluacion.setFechaEvaluacion(rs.getString("fechaEvaluacion"));
             listaEvaluaciones.add(evaluacion);
         }
         Desconectar();

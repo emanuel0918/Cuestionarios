@@ -9,11 +9,12 @@
     </head>
     <body class="container center-block" >
         <div class="container center-block">
-            <c:forEach begin="0" end="0" items="${listaOpciones}" var="Opcion">
+           <%-- <c:forEach begin="0" end="0" items="${listaOpciones}" var="Opcion">
                 <h1>Cuestionario:<c:out value="${Opcion.idPreguntas.idCuestionario.nombreCuestionario}"/></h1>
-            </c:forEach>   
+            </c:forEach>--%>
+           <h1>Cuestionario:<c:out value="${NombreCuestionario}"/></h1>
             <p>Conteste las siguinetes preguntas:</p>
-            <form  method="GET" action="controladorEvaluacion">
+            <form  method="GET" action="controladorRegistraEvaluacion">
                 <div class="form-row">
                     <c:forEach items="${listaOpciones}" var="Opcion">
                         <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><c:out value="${Opcion.idPreguntas.pregunta}"/>:</label><br>
@@ -26,9 +27,10 @@
                         </select>
                         <br>
                     </c:forEach>
-                    <c:forEach begin="0" end="0" items="${listaOpciones}" var="Opcion">
+                   <%-- <c:forEach begin="0" end="0" items="${listaOpciones}" var="Opcion">
                         <input id="Cuestionarioid" name="Cuestionarioid" type="hidden" value="${Opcion.idPreguntas.idCuestionario.idCuestionario}">
-                    </c:forEach>                    
+                    </c:forEach> --%>  
+                   <input id="Cuestionarioid" name="Cuestionarioid" type="hidden" value="${idCuestionario}">
                 </div>
                 <br>
                 <p style="text-align: center"><button type="submit" class="btn btn-primary my-1">Enviar Respuestas</button></p>
